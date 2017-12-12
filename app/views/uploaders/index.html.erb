@@ -4,3 +4,9 @@
 <% @resp.contents.each do |object| %>
   <img src="https://s3.us-east-2.amazonaws.com/sgc-test-bucket/<%= object.key %>">
 <% end %>
+
+<% @years.each do |year| %>
+
+  <h2><a href="/<%= year %>">hi</h2>
+
+<% end %>

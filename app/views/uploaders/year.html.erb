@@ -1,3 +1,5 @@
-<% @objects.each do |obj| %>
-  <%= "#{obj.key}" %>
+<% @months.each do |month| %>
+
+  <h2><a href="/<%= params[:year] %>/<%= month %> "><%= month %></h2>
+
 <% end %>
