@@ -1,1 +1,6 @@
-<h1>Hello World!</h1>
+<h1>Upload a file</h1>
+
+<%= form_tag '/uploaders', enctype: 'multipart/form-data' do %>
+	<%= file_field_tag :file  %>
+	<%= submit_tag 'Upload file' %>
+<% end %>
