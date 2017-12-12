@@ -9,6 +9,11 @@
   </head>
 
   <body>
+    <%= form_tag @post.url, class: "dropzone", id: "uploader" do %>
+      <% @post.fields.each do |key, value| %>
+        <%= hidden_field_tag key, value %>
+      <% end %>
+    <% end %>
     <%= yield %>
   </body>
 </html>
