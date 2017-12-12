@@ -3,19 +3,11 @@ class UploadersController < ApplicationController
 
   def index
     @objects = @bucket.objects(prefix: "sgcimages/")
-    url_array = []
-    @resp.contents.each do |object|
-      url_array << object.key
-    end
-    @years = year_strip(url_array)
+    @years = resp_year_to_array
   end
 
   def year
-    url_array = []
-    @resp.contents.each do |object|
-      url_array << object.key
-    end
-    @months = month_strip(url_array)
+    @months = resp_month_to_array
   end
 
   def month
@@ -23,6 +15,22 @@ class UploadersController < ApplicationController
   end
 
   private
+
+  def resp_year_to_array
+    url_array = []
+    @resp.contents.each do |object|
+      url_array << object.key
+    end
+    year_strip(url_array)
+  end
+
+  def resp_month_to_array
+    url_array = []
+    @resp.contents.each do |object|
+      url_array << object.key
+    end
+    month_strip(url_array)
+  end
 
   def year_strip(url_array)
     new_array = []
