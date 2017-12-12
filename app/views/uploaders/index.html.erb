@@ -1,7 +1,6 @@
-<h1>Upload a file</h1>
 
-<%= form_tag @post.url, class: "dropzone", id: "uploader" do %>
-  <% @post.fields.each do |key, value| %>
-    <%= hidden_field_tag key, value %>
-  <% end %>
+
+
+<% @resp.contents.each do |object| %>
+  <img src="https://s3.us-east-2.amazonaws.com/sgc-test-bucket/<%= object.key %>">
 <% end %>
