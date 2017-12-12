@@ -12,5 +12,9 @@
  *
  *= require_tree .
  *= require_self
-*= require dropzone/dropzone
+ *= require dropzone/dropzone
  */
+
+ a {
+  text-decoration: none;
+ }
