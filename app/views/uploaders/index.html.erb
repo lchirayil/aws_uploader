@@ -5,3 +5,7 @@
     <%= hidden_field_tag key, value %>
   <% end %>
 <% end %>
+
+<% @resp.contents.each do |object| %>
+  <img src="https://s3.us-east-2.amazonaws.com/sgc-test-bucket/<%= object.key %>">
+<% end %>
