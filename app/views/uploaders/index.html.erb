@@ -1,6 +1,7 @@
 <h1>Upload a file</h1>
 
-<%= form_tag '/uploaders', enctype: 'multipart/form-data' do %>
-	<%= file_field_tag :file  %>
-	<%= submit_tag 'Upload file' %>
+<%= form_tag @post.url, class: "dropzone", id: "uploader" do %>
+  <% @post.fields.each do |key, value| %>
+    <%= hidden_field_tag key, value %>
+  <% end %>
 <% end %>
