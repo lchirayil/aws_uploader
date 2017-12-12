@@ -1,0 +1,7 @@
+<h1>Upload a file</h1>
+
+<%= form_tag @post.url, class: "dropzone", id: "uploader" do %>
+  <% @post.fields.each do |key, value| %>
+    <%= hidden_field_tag key, value %>
+  <% end %>
+<% end %>
