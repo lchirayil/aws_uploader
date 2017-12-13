@@ -17,3 +17,9 @@
 //= require jquery_ujs
 //= require dropzone
 //= require_tree .
+
+function imgError(image) {
+    image.onerror = "";
+    image.src = "/no-image.svg";
+    return true;
+}
