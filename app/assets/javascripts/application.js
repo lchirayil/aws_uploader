@@ -17,3 +17,7 @@
 //= require jquery_ujs
 //= require dropzone
 //= require_tree .
+
+$("img").error(function(){
+        $(this).hide();
+});
