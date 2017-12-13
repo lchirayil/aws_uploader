@@ -1,6 +1,7 @@
+<div class="header">
+  <h2>Select Year</h2>
+</div>
 
-
-
-<% @resp.contents.each do |object| %>
-  <img src="https://s3.us-east-2.amazonaws.com/sgc-test-bucket/<%= object.key %>">
+<% @years.each do |year| %>
+  <h3><a href="/<%= year %>"><%= year %></h3>
 <% end %>
