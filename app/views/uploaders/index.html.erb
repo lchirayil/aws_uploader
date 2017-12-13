@@ -1,7 +1,7 @@
-<h1>Upload a file</h1>
+<div class="header">
+  <h2>Select Year</h2>
+</div>
 
-<%= form_tag @post.url, class: "dropzone", id: "uploader" do %>
-  <% @post.fields.each do |key, value| %>
-    <%= hidden_field_tag key, value %>
-  <% end %>
+<% @years.each do |year| %>
+  <h3><a href="/<%= year %>"><%= year %></h3>
 <% end %>
