@@ -11,8 +11,6 @@ class UploadersController < ApplicationController
   end
 
   def month
-    new_array = []
-    array = []
     @objects = @bucket.objects(prefix: "sgcimages/#{params[:year]}/#{params[:month]}")
     @count = 1
   end
