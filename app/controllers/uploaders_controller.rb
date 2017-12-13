@@ -11,7 +11,15 @@ class UploadersController < ApplicationController
   end
 
   def month
+    new_array = []
+    array = []
     @objects = @bucket.objects(prefix: "sgcimages/#{params[:year]}/#{params[:month]}")
+    @count = 1
+  end
+
+  def file_name(name)
+    array = name.split('/')
+    array[2]
   end
 
   private
@@ -55,6 +63,8 @@ class UploadersController < ApplicationController
     end
     months.uniq!
   end
+
+
 
   def load_aws
     require 'aws-sdk'

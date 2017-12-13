@@ -16,6 +16,14 @@
  */
  @import "bootstrap";
 
+ th {
+   text-align: center;
+ }
+
+ td {
+   text-align: center;
+ }
+
  .logo {
    width: 50px;
  }
@@ -48,4 +56,11 @@
 
 .header {
   text-align: center;
+}
+
+tr {
+  img {
+    height: 50px;
+    width: 50px;
+  }
 }

@@ -2,10 +2,31 @@
   <h2>Bucket Contents</h2>
 </div>
 
-<div class="back">
-  <%= link_to "Back to select month", "/#{params[:year]}" %>
-</div>
 
-<% @objects.each do |object| %>
-  <img src="https://s3.us-east-2.amazonaws.com/sgc-test-bucket/<%= object.key %>">
-<% end %>
+<div class="container">
+
+  <div class="back">
+    <%= link_to "Back to select month", "/#{params[:year]}" %>
+  </div>
+
+  <table class="table">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">File</th>
+        <th scopt="col">Created at</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @objects.each do |object| %>
+        <tr>
+          <th scope="row"><img src="https://s3.us-east-2.amazonaws.com/sgc-test-bucket/<%= object.key %>"></th>
+          <% array = object.key.split('/') %>
+            <td><a href="https://s3.us-east-2.amazonaws.com/sgc-test-bucket/<%= object.key %>"><%= array[3] %></a></td>
+            <td>test</td>
+          <% @count += 1%>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
