@@ -1,5 +1,13 @@
+<div class="header">
+  <h2>Select Month</h2>
+</div>
+
+<div class="back">
+  <%= link_to "Back to select year", "/" %>
+</div>
+
 <% @months.each do |month| %>
 
-  <h2><a href="/<%= params[:year] %>/<%= month %> "><%= month %></h2>
+  <h3><a href="/<%= params[:year] %>/<%= month %> "><%= month %></h3>
 
 <% end %>

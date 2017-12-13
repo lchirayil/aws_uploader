@@ -14,7 +14,38 @@
  *= require_self
  *= require dropzone/dropzone
  */
+ @import "bootstrap";
+
+ .logo {
+   width: 50px;
+ }
+
+ .upload {
+   width: 50px;
+ }
+
+ .dropzone {
+   border-radius: 8px;
+   background-color: #f1f1f1;
+ }
+
+
+ .yield-wrapper {
+   margin: 10px;
+ }
+
+ a:hover {
+   text-decoration: none;
+ }
 
  a {
   text-decoration: none;
  }
+
+ .back {
+    margin-bottom: 10px;
+}
+
+.header {
+  text-align: center;
+}
