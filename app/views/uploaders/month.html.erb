@@ -23,7 +23,7 @@
           <th scope="row"><img src="https://s3.us-east-2.amazonaws.com/sgc-test-bucket/<%= object.key %>" onerror="imgError(this);"></th>
           <% array = object.key.split('/') %>
             <td><a href="https://s3.us-east-2.amazonaws.com/sgc-test-bucket/<%= object.key %>" target="_blank"><%= array[3] %></a></td>
-            <td><%= object.last_modified.strftime('%m-%e-%y | %l:%M %p') %></td>
+            <td><%= object.last_modified.strftime('%m-%e-%y - %l:%M %p') %></td>
           <% @count += 1%>
         </tr>
       <% end %>
