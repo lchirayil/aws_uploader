@@ -18,6 +18,8 @@
 //= require dropzone
 //= require_tree .
 
-$("img").error(function(){
-        $(this).hide();
-});
+function imgError(image) {
+    image.onerror = "";
+    image.src = "/no-image.svg";
+    return true;
+}
