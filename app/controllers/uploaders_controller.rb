@@ -4,6 +4,7 @@ class UploadersController < ApplicationController
   def index
     @objects = @bucket.objects(prefix: "sgcimages/")
     @years = resp_year_to_array
+
   end
 
   def year
@@ -47,7 +48,7 @@ class UploadersController < ApplicationController
         years << year[1]
       end
     end
-    years.uniq!
+    years.uniq
   end
 
   def month_strip(url_array)
@@ -59,7 +60,7 @@ class UploadersController < ApplicationController
         months << month[2]
       end
     end
-    months.uniq!
+    months.uniq
   end
 
 
