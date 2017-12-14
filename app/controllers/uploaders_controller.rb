@@ -67,6 +67,11 @@ class UploadersController < ApplicationController
 
   def load_aws
     require 'aws-sdk'
+
+    @signer = Aws::S3::Presigner.new
+    @url = @signer.presigned_url(:get_object, bucket: "sgc-test-bucket", key: "sgcimages/2017/12/pdf.pdf")
+
+
     @s3 = Aws::S3::Client.new
     @resp = @s3.list_objects(bucket: ENV['S3_BUCKET'])
 
@@ -75,7 +80,8 @@ class UploadersController < ApplicationController
       key: "sgcimages/#{Time.current.year.to_i}/#{Time.current.month.to_i}/${filename}",
       allow_any: ['utf8', 'authenticity_token'],
       acl: "public-read",
-      content_type: 'application/pdf'
+      content_type: 'image/png',
+      content_disposition: 'inline'
     )
     @bucket = s3.bucket(ENV['S3_BUCKET'])
   end
