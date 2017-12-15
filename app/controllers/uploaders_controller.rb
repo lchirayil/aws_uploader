@@ -70,6 +70,7 @@ class UploadersController < ApplicationController
 
   def load_aws
     require 'aws-sdk'
+    @bucket_name = ENV['S3_BUCKET']
     @signer = Aws::S3::Presigner.new
 
     @s3 = Aws::S3::Client.new
