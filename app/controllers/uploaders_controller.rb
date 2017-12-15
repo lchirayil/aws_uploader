@@ -1,11 +1,11 @@
 class UploadersController < ApplicationController
+  before_action :authenticate_user!
   before_action :load_aws
   helper_method :signer
 
   def index
     @objects = @bucket.objects(prefix: "sgcimages/")
     @years = resp_year_to_array
-
   end
 
   def year
