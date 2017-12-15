@@ -79,7 +79,7 @@ class UploadersController < ApplicationController
     @post = s3.bucket(ENV['S3_BUCKET']).presigned_post(
       key: "sgcimages/#{Time.current.year.to_i}/#{Time.current.month.to_i}/${filename}",
       allow_any: ['utf8', 'authenticity_token'],
-      acl: "authenticated-read",
+      acl: "public-read",
       content_type: "",
       content_disposition: 'inline'
     )
