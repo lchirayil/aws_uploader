@@ -123,3 +123,17 @@ tr {
     width: 50px;
   }
 }
+
+.clipboard-btn {
+  height: 30px;
+  width: auto;
+}
+
+.clipboard-btn:hover {
+  cursor: pointer;
+}
+
+.dropzone.hzScroll {
+    overflow: auto;
+    white-space: nowrap;
+}
