@@ -15,7 +15,9 @@
     <nav class="navbar navbar-dark bg-dark">
     <a class="navbar-brand" href="/"><%= image_tag("AWS.svg", :class => "logo") %></a>
     <a class="navbar-brand" href="/">Scranton Gillette S3 Uploader</a>
-    <a class="navbar-brand" href="/users/sign_out">Sign Out</a>
+    <% if current_user %>
+      <%= link_to 'Sign out', '/users/sign_out', class:'navbar-brand' , :method => :delete %>
+    <% end %>
   </nav>
     <div class="yield-wrapper">
       <% if current_user %>
