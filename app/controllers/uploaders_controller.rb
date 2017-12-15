@@ -68,14 +68,22 @@ class UploadersController < ApplicationController
     months.uniq
   end
 
-  def extension_extractor(url)
-    ext = url.split('.').last
-    if ext == 'pdf' || ext == 'exe'
-      return 'application/pdf'
-    else
-      return 'image/jpeg'
-    end
-  end
+  # def extension_extractor(url)
+  #   ext = url.split('.').last
+  #   if ext == 'pdf' || ext == 'exe'
+  #     return 'application/pdf'
+  #   elsif ext == 'doc'
+  #     return 'application/msword'
+  #   elsif ext == 'png'
+  #     return 'application/png'
+  #   elsif ext == 'jpg'
+  #     return 'application/jpg'
+  #   elsif ext == 'gif'
+  #     return 'image/gif'
+  #   else
+  #     return ''
+  #   end
+  # end
 
 
 
@@ -91,7 +99,7 @@ class UploadersController < ApplicationController
       key: "sgcimages/#{Time.current.year.to_i}/#{Time.current.month.to_i}/${filename}",
       allow_any: ['utf8', 'authenticity_token'],
       acl: "public-read",
-      content_type: extension_extractor('appliion.pdf'),
+      content_type: "",
       content_disposition: 'inline'
     )
     @bucket = s3.bucket(ENV['S3_BUCKET'])
