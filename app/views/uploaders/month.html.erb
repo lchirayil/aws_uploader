@@ -25,7 +25,7 @@
           <% array = object.key.split('/') %>
             <td><a href="<%= signer(object.key) %>" target="_blank"><%= array[3] %></a></td>
             <td><%= object.last_modified.strftime('%m-%e-%y') %></td>
-            <td><button class="clipboard-btn" data-clipboard-action="copy" data-clipboard-text="https://s3.us-east-2.amazonaws.com/sgc-test-bucket/<%= object.key %>">Copy to clipboard</button></td>
+            <td><input type="image" src="/clipboard.svg" class="clipboard-btn" data-clipboard-action="copy" data-clipboard-text="https://s3.us-east-2.amazonaws.com/sgc-test-bucket/<%= object.key %>"/></td>
           <% @count += 1%>
         </tr>
       <% end %>

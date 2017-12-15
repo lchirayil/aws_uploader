@@ -9,7 +9,7 @@
 
 
   <body>
-    
+
     <div class="alert-wrapper">
       <div class="alerts">
         <%= render 'layouts/messages' %>
@@ -25,7 +25,7 @@
   </nav>
     <div class="yield-wrapper">
       <% if current_user %>
-        <%= form_tag @post.url, class: "dropzone", id: "uploader" do %>
+        <%= form_tag @post.url, class: "dropzone hzScroll", id: "uploader" do %>
           <div class="dz-message" data-dz-message><%= image_tag("upload2.svg", :class => "upload") %></div>
           <% @post.fields.each do |key, value| %>
             <%= hidden_field_tag key, value %>
