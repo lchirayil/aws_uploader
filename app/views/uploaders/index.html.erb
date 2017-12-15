@@ -1,9 +1,12 @@
-<div class="header">
-  <h2>Select Year</h2>
+<div class="container centerify">
+  <div class="header">
+    <h2>Select Year</h2>
+  </div>
+  <hr>
+
+  <%= @url %>
+
+  <% @years.each do |year| %>
+    <h3><a href="/<%= year %>"><%= year %></h3>
+  <% end %>
 </div>
-
-<%= @url%>
-
-<% @years.each do |year| %>
-  <h3><a href="/<%= year %>"><%= year %></h3>
-<% end %>
