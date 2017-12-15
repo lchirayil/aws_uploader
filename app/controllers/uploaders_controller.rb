@@ -68,25 +68,6 @@ class UploadersController < ApplicationController
     months.uniq
   end
 
-  # def extension_extractor(url)
-  #   ext = url.split('.').last
-  #   if ext == 'pdf' || ext == 'exe'
-  #     return 'application/pdf'
-  #   elsif ext == 'doc'
-  #     return 'application/msword'
-  #   elsif ext == 'png'
-  #     return 'application/png'
-  #   elsif ext == 'jpg'
-  #     return 'application/jpg'
-  #   elsif ext == 'gif'
-  #     return 'image/gif'
-  #   else
-  #     return ''
-  #   end
-  # end
-
-
-
   def load_aws
     require 'aws-sdk'
     @signer = Aws::S3::Presigner.new
