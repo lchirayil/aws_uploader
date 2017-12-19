@@ -1,7 +1,16 @@
 class UploadersController < ApplicationController
   before_action :authenticate_user!
   before_action :load_aws
+  before_action :populate_db, only: [:search]
   helper_method :signer
+
+  def search
+    search_attribute = params[:search]
+    if search_attribute
+      @bucket_search = Bucket.kinda_spelled_like(params[:search])
+    end
+    @count = 1
+  end
 
   def index
     @objects = @bucket.objects(prefix: "sgcimages/")
@@ -23,10 +32,23 @@ class UploadersController < ApplicationController
 
   def file_name(name)
     array = name.split('/')
-    array[2]
+    array[3]
   end
 
   private
+
+  def populate_db
+    Bucket.destroy_all
+
+    @resp.contents.each do |item|
+      Bucket.create(
+        url: "https://s3.us-east-2.amazonaws.com/#{item.key}",
+        filename: file_name(item.key),
+        key: item.key,
+        last_mod: item.last_modified.strftime('%m-%e-%y')
+      )
+    end
+  end
 
   def resp_year_to_array
     url_array = []
@@ -68,7 +90,9 @@ class UploadersController < ApplicationController
     months.uniq
   end
 
+
   def load_aws
+
     require 'aws-sdk'
     @bucket_name = ENV['S3_BUCKET']
     @signer = Aws::S3::Presigner.new
@@ -82,8 +106,11 @@ class UploadersController < ApplicationController
       allow_any: ['utf8', 'authenticity_token'],
       acl: "public-read",
       content_type: "",
-      content_disposition: 'inline'
+      content_disposition: 'inline',
+      metadata: {tag: ""}
     )
     @bucket = s3.bucket(ENV['S3_BUCKET'])
+
+
   end
 end

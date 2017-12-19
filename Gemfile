@@ -13,6 +13,8 @@ gem 'devise'
 gem 'clipboard-rails'
 # Use sqlite3 as the database for Active Record
 gem 'pg'
+gem 'pg_search'
+gem 'pg_trgm'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
