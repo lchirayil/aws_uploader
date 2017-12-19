@@ -1,19 +1,14 @@
-<div class="container centerify">
-  <div class="header">
-    <h2>Select Year</h2>
-  </div>
-
-  <hr>
-  
-  <% @years.each do |year| %>
-    <h3><a href="/<%= year %>"><%= year %></a></h3>
-  <% end %>
+<div class="header">
+  <h2>Bucket Contents</h2>
 </div>
 
-<br>
 
-<div class="container centerify">
-<h3>Most Recent</h3>
+<div class="container">
+
+  <div class="back">
+    <%= link_to "Back to select month", "/#{params[:year]}" %>
+  </div>
+
   <table class="table">
     <thead class="thead-light">
       <tr>

@@ -7,7 +7,6 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-
   <body>
 
     <div class="alert-wrapper">
@@ -32,6 +31,10 @@
           <% end %>
         <% end %>
       <% end %>
+      <br>
+      <div class="search">
+        <%= render "search", purpose: "Search", url: "/search", verb: :get %>
+      </div>
       <br>
       <%= yield %>
     </div>

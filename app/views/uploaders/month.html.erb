@@ -2,7 +2,6 @@
   <h2>Bucket Contents</h2>
 </div>
 
-
 <div class="container">
 
   <div class="back">
@@ -24,7 +23,7 @@
           <th scope="row"><img src="<%= signer(object.key) %>" target="_blank" onerror="imgError(this);"></th>
           <% array = object.key.split('/') %>
             <td><a href="<%= signer(object.key) %>" target="_blank"><%= array[3] %></a></td>
-            <td><%= object.last_modified.strftime('%m-%e-%y') %></td>
+            <td><%= object.last_mod %></td>
             <td><input type="image" src="/clipboard.svg" class="clipboard-btn" data-clipboard-action="copy" data-clipboard-text="https://s3.us-east-2.amazonaws.com/<%= @bucket_name %>/<%= object.key %>"/></td>
           <% @count += 1%>
         </tr>
