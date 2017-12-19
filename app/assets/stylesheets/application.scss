@@ -49,6 +49,11 @@
 
 .back {
     margin-bottom: 10px;
+    display: inline;
+}
+
+.right-h5 {
+  float: right;
 }
 
 .centerify {
@@ -133,9 +138,13 @@ tr {
   }
 }
 
-
 .upload {
   width: 50px;
+}
+
+.warning {
+  color: red;
+  text-align: center;
 }
 
 .yield-wrapper {
