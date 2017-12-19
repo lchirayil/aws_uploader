@@ -17,6 +17,7 @@
 //= require jquery_ujs
 //= require dropzone
 //= require clipboard
+//= require local-time
 //= require_tree .
 
 function imgError(image) {
