@@ -7,7 +7,6 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-
   <body>
 
     <div class="alert-wrapper">
@@ -15,10 +14,6 @@
         <%= render 'layouts/messages' %>
       </div>
     </div>
-
-    <% @resp.each do |item| %>
-      <%= item %>
-    <% end %>
 
     <nav class="navbar navbar-dark bg-dark">
     <a class="navbar-brand" href="/"><%= image_tag("AWS.svg", :class => "logo") %></a>
@@ -36,6 +31,10 @@
           <% end %>
         <% end %>
       <% end %>
+      <br>
+      <div id="post-search">
+        <%= render "search", purpose: "Search", url: "/search", verb: :get %>
+      </div>
       <br>
       <%= yield %>
     </div>
