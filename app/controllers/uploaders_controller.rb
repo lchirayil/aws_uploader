@@ -43,7 +43,6 @@ class UploadersController < ApplicationController
 
   def small_db
     Bucket.destroy_all
-
     @temp_obj.each do |item|
       Bucket.create(
         url: "https://s3.us-east-2.amazonaws.com/#{item.key}",
@@ -57,7 +56,6 @@ class UploadersController < ApplicationController
 
   def populate_db
     Bucket.destroy_all
-
     @resp.contents.each do |item|
       Bucket.create(
         url: "https://s3.us-east-2.amazonaws.com/#{item.key}",
@@ -129,7 +127,6 @@ class UploadersController < ApplicationController
       metadata: {tag: ""}
     )
     @bucket = s3.bucket(ENV['S3_BUCKET'])
-
 
   end
 end
