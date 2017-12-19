@@ -68,7 +68,13 @@ class UploadersController < ApplicationController
     months.uniq
   end
 
+  def create_uuid(tag)
+    require 'digest'
+    
+  end
+
   def load_aws
+
     require 'aws-sdk'
     @bucket_name = ENV['S3_BUCKET']
     @signer = Aws::S3::Presigner.new
@@ -83,7 +89,7 @@ class UploadersController < ApplicationController
       acl: "public-read",
       content_type: "",
       content_disposition: 'inline',
-      metadata: {tag: create_uuid(4).to_s}
+      metadata: {tag: ""}
     )
     @bucket = s3.bucket(ENV['S3_BUCKET'])
   end
