@@ -15,6 +15,8 @@ class UploadersController < ApplicationController
   def index
     @objects = @bucket.objects(prefix: "sgcimages/")
     @years = resp_year_to_array
+    @bucket_search = Bucket.order(last_moddy: :desc).limit(10)
+    @count = 1
   end
 
   def year
@@ -22,7 +24,9 @@ class UploadersController < ApplicationController
   end
 
   def month
-    @objects = @bucket.objects(prefix: "sgcimages/#{params[:year]}/#{params[:month]}")
+    @temp_obj = @bucket.objects(prefix: "sgcimages/#{params[:year]}/#{params[:month]}")
+    small_db
+    @objects = Bucket.order(last_moddy: :desc)
     @count = 1
   end
 
@@ -37,6 +41,20 @@ class UploadersController < ApplicationController
 
   private
 
+  def small_db
+    Bucket.destroy_all
+
+    @temp_obj.each do |item|
+      Bucket.create(
+        url: "https://s3.us-east-2.amazonaws.com/#{item.key}",
+        filename: file_name(item.key),
+        key: item.key,
+        last_mod: item.last_modified.strftime('%m-%e-%y %H:%M'),
+        last_moddy: item.last_modified
+      )
+    end
+  end
+
   def populate_db
     Bucket.destroy_all
 
@@ -45,7 +63,8 @@ class UploadersController < ApplicationController
         url: "https://s3.us-east-2.amazonaws.com/#{item.key}",
         filename: file_name(item.key),
         key: item.key,
-        last_mod: item.last_modified.strftime('%m-%e-%y')
+        last_mod: item.last_modified.strftime('%m-%e-%y %H:%M'),
+        last_moddy: item.last_modified
       )
     end
   end
