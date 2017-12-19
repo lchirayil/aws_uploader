@@ -2,11 +2,37 @@
   <div class="header">
     <h2>Select Year</h2>
   </div>
+
   <hr>
-
-  <%= @url %>
-
   <% @years.each do |year| %>
     <h3><a href="/<%= year %>"><%= year %></h3>
   <% end %>
+</div>
+
+
+
+<div class="container">
+
+  <table class="table">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">Image</th>
+        <th scope="col">File</th>
+        <th scopt="col">Last Modified</th>
+        <th scopt="col">Copy to Clipboard</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @bucket_search.each do |object| %>
+        <tr>
+          <th scope="row"><img src="<%= signer(object.key) %>" target="_blank" onerror="imgError(this);"></th>
+          <% array = object.key.split('/') %>
+            <td><a href="<%= signer(object.key) %>" target="_blank"><%= array[3] %></a></td>
+            <td><%= object.last_mod %></td>
+            <td><input type="image" src="/clipboard.svg" class="clipboard-btn" data-clipboard-action="copy" data-clipboard-text="https://s3.us-east-2.amazonaws.com/<%= @bucket_name %>/<%= object.key %>"/></td>
+          <% @count += 1%>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>

@@ -1,7 +1,7 @@
 class UploadersController < ApplicationController
   before_action :authenticate_user!
   before_action :load_aws
-  before_action :populate_db, only: [:search]
+  before_action :populate_db, only: [:search, :index]
   helper_method :signer
 
   def search
@@ -15,6 +15,8 @@ class UploadersController < ApplicationController
   def index
     @objects = @bucket.objects(prefix: "sgcimages/")
     @years = resp_year_to_array
+    @bucket_search = Bucket.order(last_moddy: :desc).limit(10)
+    @count = 1
   end
 
   def year
@@ -45,7 +47,8 @@ class UploadersController < ApplicationController
         url: "https://s3.us-east-2.amazonaws.com/#{item.key}",
         filename: file_name(item.key),
         key: item.key,
-        last_mod: item.last_modified.strftime('%m-%e-%y')
+        last_mod: item.last_modified.strftime('%m-%e-%y'),
+        last_moddy: item.last_modified
       )
     end
   end
