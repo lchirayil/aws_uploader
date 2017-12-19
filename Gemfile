@@ -11,9 +11,6 @@ gem 'rails', '~> 5.1.4'
 #bootstrap
 gem 'bootstrap', '~> 4.0.0.beta2.1'
 
-#authentication
-gem 'devise'
-
 #copy links
 gem 'clipboard-rails'
 

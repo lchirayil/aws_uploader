@@ -26,10 +26,6 @@ function imgError(image) {
 }
 
 $(document).ready(function(){
-  $('.alert').fadeIn(500).delay(1000).fadeOut(1000);
-});
-
-$(document).ready(function(){
   var clipboard = new Clipboard('.clipboard-btn');
   console.log(clipboard);
 });
