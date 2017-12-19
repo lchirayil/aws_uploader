@@ -23,7 +23,7 @@ class UploadersController < ApplicationController
 
   def file_name(name)
     array = name.split('/')
-    array[2]
+    array[3]
   end
 
   private
@@ -68,10 +68,6 @@ class UploadersController < ApplicationController
     months.uniq
   end
 
-  def create_uuid(tag)
-    require 'digest'
-    
-  end
 
   def load_aws
 
@@ -92,5 +88,14 @@ class UploadersController < ApplicationController
       metadata: {tag: ""}
     )
     @bucket = s3.bucket(ENV['S3_BUCKET'])
+    Bucket.destroy_all
+
+    @resp.contents.each do |item|
+      Bucket.create(
+        url: "https://s3.us-east-2.amazonaws.com/#{item.key}",
+        filename: file_name(item.key)
+      )
+    end
+
   end
 end

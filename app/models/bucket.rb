@@ -1,0 +1,2 @@
+class Bucket < ApplicationRecord
+end
