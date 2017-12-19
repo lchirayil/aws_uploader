@@ -83,7 +83,7 @@ class UploadersController < ApplicationController
       acl: "public-read",
       content_type: "",
       content_disposition: 'inline',
-      tag
+      metadata: {tag: create_uuid(4).to_s}
     )
     @bucket = s3.bucket(ENV['S3_BUCKET'])
   end
