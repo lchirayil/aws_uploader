@@ -82,7 +82,8 @@ class UploadersController < ApplicationController
       allow_any: ['utf8', 'authenticity_token'],
       acl: "public-read",
       content_type: "",
-      content_disposition: 'inline'
+      content_disposition: 'inline',
+      tag
     )
     @bucket = s3.bucket(ENV['S3_BUCKET'])
   end
