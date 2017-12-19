@@ -566,7 +566,6 @@ GEM
       aws-sigv4 (~> 1.0)
     aws-sigv2 (1.0.1)
     aws-sigv4 (1.0.2)
-    bcrypt (3.1.11)
     bindex (0.5.0)
     bootstrap (4.0.0.beta2.1)
       autoprefixer-rails (>= 6.0.3)
@@ -593,12 +592,6 @@ GEM
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.5)
     crass (1.0.3)
-    devise (4.3.0)
-      bcrypt (~> 3.0)
-      orm_adapter (~> 0.1)
-      railties (>= 4.1.0, < 5.2)
-      responders
-      warden (~> 1.2.3)
     dropzonejs-rails (0.8.2)
       rails (> 3.1)
     erubi (1.7.0)
@@ -623,6 +616,7 @@ GEM
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
       ruby_dep (~> 1.2)
+    local_time (2.0.0)
     loofah (2.1.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -636,13 +630,11 @@ GEM
     nio4r (2.1.0)
     nokogiri (1.8.1)
       mini_portile2 (~> 2.3.0)
-    orm_adapter (0.5.0)
     pg (0.21.0)
     pg_search (2.1.1)
       activerecord (>= 4.2)
       activesupport (>= 4.2)
       arel (>= 6)
-    pg_trgm (0.0.1)
     popper_js (1.12.5)
     public_suffix (3.0.1)
     puma (3.11.0)
@@ -677,9 +669,6 @@ GEM
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
     ref (2.0.0)
-    responders (2.4.0)
-      actionpack (>= 4.2.0, < 5.3)
-      railties (>= 4.2.0, < 5.3)
     ruby_dep (1.5.0)
     rubyzip (1.2.1)
     sass (3.5.3)
@@ -718,8 +707,6 @@ GEM
       thread_safe (~> 0.1)
     uglifier (4.0.2)
       execjs (>= 0.3.0, < 3)
-    warden (1.2.7)
-      rack (>= 1.0)
     web-console (3.5.1)
       actionview (>= 5.0)
       activemodel (>= 5.0)
@@ -741,16 +728,15 @@ DEPENDENCIES
   capybara (~> 2.13)
   clipboard-rails
   coffee-rails (~> 4.2)
-  devise
   dropzonejs-rails
   execjs
   figaro
   jbuilder (~> 2.5)
   jquery-rails
   listen (>= 3.0.5, < 3.2)
+  local_time
   pg
   pg_search
-  pg_trgm
   puma (~> 3.7)
   rails (~> 5.1.4)
   sass-rails (~> 5.0)

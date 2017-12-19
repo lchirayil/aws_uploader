@@ -8,27 +8,15 @@
   </head>
 
   <body>
-
-    <div class="alert-wrapper">
-      <div class="alerts">
-        <%= render 'layouts/messages' %>
-      </div>
-    </div>
-
     <nav class="navbar navbar-dark bg-dark">
     <a class="navbar-brand" href="/"><%= image_tag("AWS.svg", :class => "logo") %></a>
     <a class="navbar-brand" href="/">Scranton Gillette S3 Uploader</a>
-    <% if current_user %>
-      <%= link_to 'Sign out', '/users/sign_out', class:'navbar-brand' , :method => :delete %>
-    <% end %>
   </nav>
     <div class="yield-wrapper">
-      <% if current_user %>
-        <%= form_tag @post.url, class: "dropzone hzScroll", id: "uploader" do %>
-          <div class="dz-message" data-dz-message><%= image_tag("upload2.svg", :class => "upload") %></div>
-          <% @post.fields.each do |key, value| %>
-            <%= hidden_field_tag key, value %>
-          <% end %>
+      <%= form_tag @post.url, class: "dropzone hzScroll", id: "uploader" do %>
+        <div class="dz-message" data-dz-message><%= image_tag("upload2.svg", :class => "upload") %></div>
+        <% @post.fields.each do |key, value| %>
+          <%= hidden_field_tag key, value %>
         <% end %>
       <% end %>
       <br>
@@ -39,4 +27,5 @@
       <%= yield %>
     </div>
   </body>
+  
 </html>

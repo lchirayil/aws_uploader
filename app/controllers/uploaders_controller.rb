@@ -1,5 +1,4 @@
 class UploadersController < ApplicationController
-  before_action :authenticate_user!
   before_action :load_aws
   before_action :populate_db, only: [:search]
   helper_method :signer
