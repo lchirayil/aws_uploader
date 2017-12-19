@@ -6,7 +6,7 @@ class UploadersController < ApplicationController
   def search
     search_attribute = params[:search]
     if search_attribute
-      @bucket_search = Bucket.kinda_spelled_like(params[:search])
+      @bucket_search = Bucket.order(last_moddy: :desc).kinda_spelled_like(params[:search])
     end
     @count = 1
   end
