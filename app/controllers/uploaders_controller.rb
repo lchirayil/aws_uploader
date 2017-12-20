@@ -1,6 +1,6 @@
 class UploadersController < ApplicationController
   before_action :load_aws
-  before_action :populate_db, only: [:search]
+  before_action :populate_db, only: [:search, :index]
   helper_method :signer
 
   def search
