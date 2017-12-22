@@ -24,7 +24,6 @@ class UploadersController < ApplicationController
     @objects = Bucket.where("url like ?", "%sgcimages/#{params[:year]}/#{params[:month]}%").order(last_moddy: :desc)
   end
 
-
   def file_name(name)
     array = name.split('/')
     array[3]
@@ -34,7 +33,8 @@ class UploadersController < ApplicationController
 
   def check_db
     @resp.contents.each do |item|
-      unless Bucket.where(key: item.key) != []
+      @bucket_check = Bucket.where(key: item.key)
+      if @bucket_check == []
         Bucket.create(
           url: "https://s3.us-east-2.amazonaws.com/sgc-test-bucket/#{item.key}",
           filename: file_name(item.key),
@@ -42,6 +42,18 @@ class UploadersController < ApplicationController
           last_mod: item.last_modified.strftime('%m-%e-%y %H:%M'),
           last_moddy: item.last_modified
         )
+      end
+      if @bucket_check != []
+        if @bucket_check.first.last_moddy != item.last_modified
+          @bucket_check.first.destroy
+            Bucket.create(
+              url: "https://s3.us-east-2.amazonaws.com/sgc-test-bucket/#{item.key}",
+              filename: file_name(item.key),
+              key: item.key,
+              last_mod: item.last_modified.strftime('%m-%e-%y %H:%M'),
+              last_moddy: item.last_modified
+            )
+        end
       end
     end
   end

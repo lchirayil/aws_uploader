@@ -23,11 +23,11 @@
     <tbody>
       <% @bucket_search.each do |object| %>
         <tr>
-          <th scope="row"><img src="<%= signer(object.key) %>" target="_blank" onerror="imgError(this);"></th>
+          <th scope="row"><img src="<%= object.url %>" target="_blank" onerror="imgError(this);"></th>
           <% array = object.key.split('/') %>
-            <td><a href="<%= signer(object.key) %>" target="_blank"><%= array[3] %></a></td>
+            <td><a href="<%= object.url %>" target="_blank"><%= array[3] %></a></td>
             <td><%= local_time(object.last_moddy) %></td>
-            <td><input type="image" src="/clipboard.svg" class="clipboard-btn" data-clipboard-action="copy" data-clipboard-text="https://s3.us-east-2.amazonaws.com/<%= @bucket_name %>/<%= object.key %>"/></td>
+            <td><input type="image" src="/clipboard.svg" class="clipboard-btn" data-clipboard-action="copy" data-clipboard-text="<%= object.url %>"/></td>
         </tr>
       <% end %>
     </tbody>
