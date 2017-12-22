@@ -24,9 +24,6 @@ class UploadersController < ApplicationController
     @objects = Bucket.where("url like ?", "%sgcimages/#{params[:year]}/#{params[:month]}%").order(last_moddy: :desc)
   end
 
-  # def signer(key)
-  #   @signer.presigned_url(:get_object, bucket: ENV['S3_BUCKET'],key: key)
-  # end
 
   def file_name(name)
     array = name.split('/')
