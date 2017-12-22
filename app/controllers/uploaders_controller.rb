@@ -1,6 +1,6 @@
 class UploadersController < ApplicationController
   before_action :load_aws
-  before_action :populate_db, only: [:search, :index]
+  before_action :check_db, only: [:search, :index, :month]
   helper_method :signer
 
   def search
@@ -8,14 +8,12 @@ class UploadersController < ApplicationController
     if search_attribute
       @bucket_search = Bucket.order(last_moddy: :desc).kinda_spelled_like(params[:search])
     end
-    @count = 1
   end
 
   def index
     @objects = @bucket.objects(prefix: "sgcimages/")
     @years = resp_year_to_array
     @bucket_search = Bucket.order(last_moddy: :desc).limit(10)
-    @count = 1
   end
 
   def year
@@ -23,15 +21,12 @@ class UploadersController < ApplicationController
   end
 
   def month
-    @temp_obj = @bucket.objects(prefix: "sgcimages/#{params[:year]}/#{params[:month]}")
-    small_db
-    @objects = Bucket.order(last_moddy: :desc)
-    @count = 1
+    @objects = Bucket.where("url like ?", "%sgcimages/#{params[:year]}/#{params[:month]}%").order(last_moddy: :desc)
   end
 
-  def signer(key)
-    @signer.presigned_url(:get_object, bucket: ENV['S3_BUCKET'],key: key)
-  end
+  # def signer(key)
+  #   @signer.presigned_url(:get_object, bucket: ENV['S3_BUCKET'],key: key)
+  # end
 
   def file_name(name)
     array = name.split('/')
@@ -40,29 +35,17 @@ class UploadersController < ApplicationController
 
   private
 
-  def small_db
-    Bucket.destroy_all
-    @temp_obj.each do |item|
-      Bucket.create(
-        url: "https://s3.us-east-2.amazonaws.com/#{item.key}",
-        filename: file_name(item.key),
-        key: item.key,
-        last_mod: item.last_modified.strftime('%m-%e-%y %H:%M'),
-        last_moddy: item.last_modified
-      )
-    end
-  end
-
-  def populate_db
-    Bucket.destroy_all
+  def check_db
     @resp.contents.each do |item|
-      Bucket.create(
-        url: "https://s3.us-east-2.amazonaws.com/#{item.key}",
-        filename: file_name(item.key),
-        key: item.key,
-        last_mod: item.last_modified.strftime('%m-%e-%y %H:%M'),
-        last_moddy: item.last_modified
-      )
+      unless Bucket.where(key: item.key) != []
+        Bucket.create(
+          url: "https://s3.us-east-2.amazonaws.com/sgc-test-bucket/#{item.key}",
+          filename: file_name(item.key),
+          key: item.key,
+          last_mod: item.last_modified.strftime('%m-%e-%y %H:%M'),
+          last_moddy: item.last_modified
+        )
+      end
     end
   end
 
