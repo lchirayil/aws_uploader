@@ -17,7 +17,7 @@ class UploadersController < ApplicationController
   end
 
   def year
-    @months = resp_month_to_array
+    @months = resp_month_to_array.sort
   end
 
   def month

@@ -3,6 +3,5 @@ Rails.application.routes.draw do
   get '/search' => 'uploaders#search'
   get '/:year' => 'uploaders#year'
   get '/:year/:month' => 'uploaders#month'
-  get '/:year/:month' => 'uploaders#month'
   post '/uploaders' => 'uploaders#create'
 end
